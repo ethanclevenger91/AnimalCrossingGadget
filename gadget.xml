@@ -1,0 +1,16 @@
+﻿<gadget>
+<name>AC_Clock</name>
+<version>1.0.0.0</version>
+<author name="Ethan Clevenger">
+<info url="ethanclevenger.com" />
+</author>
+<copyright>&#169; Ethan Clevenger</copyright>
+<description>A clock modeled on the Animal Crossing Clock</description>
+<hosts>
+<host name="sidebar">
+<base type="HTML" apiVersion="1.0.0" src="ac_clock.html" />
+<permissions>Full</permissions>
+<platform minPlatformVersion="1.0" />
+</host>
+</hosts>
+</gadget>

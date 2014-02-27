@@ -1,0 +1,136 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=Unicode" />
+        <title>Animal Crossing Gadget</title>
+        <style type="text/css">
+		@font-face {
+			font-family:FinkHeavy;
+			src:url(font/FinkHeavy.woff);
+		}
+        body
+        {
+            margin: 0;
+            width: 400px;
+            height: 250px;
+            font-family: "FinkHeavy", Georgia;
+            font-weight: bold;
+            font-size: 20px;
+			color:#cf913a;
+        }
+        #gadgetContent
+        {
+            margin-top: 40px;
+			margin-left:100px
+            width: 130px;
+            vertical-align: middle;
+            text-align: center;
+            overflow: hidden;
+        }
+		#day {
+			display:block;
+			float:left;
+			margin-top:175px;
+			margin-left:20px;
+			font-size:48px;
+		}
+		#date {
+			display:block;
+			float:left;
+			margin-top:20px;
+			margin-left:10px;
+			font-size:48px;
+			transform:rotate(-10deg);
+		}
+        </style>
+        <script type="text/jscript" language="jscript">
+            // Initialize the gadget.
+			var day;
+			var date;
+			var hour_disp;
+			var min_disp;
+			var mer_disp;
+			var dots_disp;
+			var timer;
+			var i = 1;
+            function init()
+            {
+                imgBackground.src = "url(img/background.png)";
+				day = imgBackground.addTextObject("Te", "FinkHeavy", 48, "SaddleBrown", "16", "175");
+				date = imgBackground.addTextObject("Temp", "FinkHeavy", 44, "SaddleBrown", "64", "35");
+				hour_disp = imgBackground.addTextObject("Te", "FinkHeavy", 46, "SaddleBrown", "140", "100");
+				min_disp = imgBackground.addTextObject("Te", "FinkHeavy", 46, "SaddleBrown", "235", "100");
+				mer_disp = imgBackground.addTextObject("Te", "FinkHeavy", 38, "SaddleBrown", "315", "148");
+				dots_disp = imgBackground.addImageObject("url(img/dots.png)", "203", "100");
+				date.rotation = -9.0;
+				update_date();
+			}
+			function update_date(){
+				var currentDate = new Date();
+				var dow;
+				
+				if(currentDate.getDay() == 0) {
+					dow = "Su";
+				}
+				else if(currentDate.getDay() == 1) {
+					dow = "Mo";
+				}
+				else if(currentDate.getDay() == 2) {
+					dow="Tu";
+				}
+				else if(currentDate.getDay() == 3) {
+					dow="We";
+				}
+				else if(currentDate.getDay() == 4) {
+					dow="Th";
+				}
+				else if(currentDate.getDay() == 5) {
+					dow="Fr";
+				}
+				else if(currentDate.getDay() == 6) {
+					dow="Sa";
+				}
+				day.value=dow;
+				var numDate = (currentDate.getMonth()+1)+" / "+currentDate.getDate();
+				date.value=numDate;
+				if(i==0) {
+					dots_disp.opacity = 100;
+					i = 1;
+				}
+				else {
+					dots_disp.opacity = 0;
+					i = 0;
+				}
+				var am=true;
+				var hour = currentDate.getHours();
+				var min = currentDate.getMinutes();
+				if(hour > 12) {
+					hour = hour-12;
+					am = false;
+				}
+				if(hour < 9 && hour_disp.left != "140") {
+					hour_disp.left="140";
+				}
+				else if(hour > 9 && hour_disp.left != "125") {
+					hour_disp.left="125";
+				}
+				hour_disp.value=hour;
+				if(min < 10) {
+					min = "0"+min;
+				}
+				min_disp.value=min;
+				if(am) {
+					mer_disp.value = 'a';
+				} else {
+					mer_disp.value = 'p';
+				}
+				
+				timer = window.setTimeout('update_date()', 800);
+			}
+        </script>
+    </head>
+	
+    <body onload="init()">
+        <g:background id="imgBackground">
+        </g:background>
+    </body>
+</html>
