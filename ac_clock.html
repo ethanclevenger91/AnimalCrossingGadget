@@ -107,6 +107,9 @@
 					hour = hour-12;
 					am = false;
 				}
+				if(hour == 0) {
+					hour = 12;
+				}
 				if(hour < 9 && hour_disp.left != "140") {
 					hour_disp.left="140";
 				}
