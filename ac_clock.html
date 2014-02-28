@@ -103,11 +103,14 @@
 				var am=true;
 				var hour = currentDate.getHours();
 				var min = currentDate.getMinutes();
-				if(hour > 12) {
+				if(hour == 12) {
+					am = false;
+				}
+				else if(hour > 12) {
 					hour = hour-12;
 					am = false;
 				}
-				if(hour == 0) {
+				else if(hour == 0) {
 					hour = 12;
 				}
 				if(hour < 9 && hour_disp.left != "140") {
